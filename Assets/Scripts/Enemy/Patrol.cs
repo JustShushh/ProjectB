@@ -10,7 +10,7 @@ public class Patrol : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float hitLength;
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Animator animator;
+    [SerializeField] internal Animator animator;
     PlayerController playerController;
 
     internal bool attacking;
@@ -41,7 +41,7 @@ public class Patrol : MonoBehaviour
                     {
                         agent.destination = player.transform.position;
 
-                        if (hit.distance < hitLength && !playerController.safe) { animator.SetBool("AttackPlayer", true); playerController.TakeHit(); }
+                        if (hit.distance < hitLength && !playerController.safe) { animator.SetBool("AttackPlayer", true);}
 
                     }
                 }

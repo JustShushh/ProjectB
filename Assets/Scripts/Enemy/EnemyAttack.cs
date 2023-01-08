@@ -14,11 +14,12 @@ public class EnemyAttack : MonoBehaviour
 
     // Update is called once per frame
 
-    private void OnTriggerStay (Collider other)
+    private void OnTriggerEnter (Collider other)
     {
-        
-        
-           
-        
+        if (patrol.animator.GetBool("AttackPlayer") && !patrol.animator.GetBool("Die"))
+        {
+            other.gameObject.SendMessageUpwards("TakeHit");
+        }
+      
     }
 }

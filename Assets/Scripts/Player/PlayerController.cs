@@ -32,8 +32,11 @@ public class PlayerController : MonoBehaviour
     private float curSpeedX;
     private float curSpeedY;
 
+    public float health = 100f;
+    public float damage = 25f;
 
-    CharacterController characterController;
+
+    internal CharacterController characterController;
 
     float rotationX = 0;
 
@@ -145,6 +148,7 @@ public class PlayerController : MonoBehaviour
     public void TakeHit()
     {
         animator.SetInteger("Animator", 7);
+        health = health - damage;
         float t = 1;
         while(t > 0)
         {
