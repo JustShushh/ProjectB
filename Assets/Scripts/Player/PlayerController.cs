@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     bool isRunning;
     bool isLanding;
+    internal bool safe = false;
     private float curSpeedX;
     private float curSpeedY;
 
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
     }
     void Movement()
     {
-        PlayerAnimation();
+        InputHandling();
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -112,7 +113,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //gravity for falling
-            else if (!characterController.isGrounded)
+           if (!characterController.isGrounded)
             {
                 moveDirection.y -= gravity * Time.deltaTime;
                 animator.SetInteger("Animator", 9);
@@ -144,10 +145,17 @@ public class PlayerController : MonoBehaviour
     public void TakeHit()
     {
         animator.SetInteger("Animator", 7);
+        float t = 1;
+        while(t > 0)
+        {
+            t -= 0.05f;
+            safe = true;
+        }
+        safe = false;
     }
-    internal void PlayerAnimation()
+    internal void InputHandling()
     {
-        if (Input.GetKey(KeyCode.X)) { animator.SetInteger("Animator", 3); canMove = false; return; }
+        if (Input.GetKey(KeyCode.X)) { animator.SetInteger("Animator", 3); return; }
 
         if (isRunning && Input.GetKey(KeyCode.W)) { animator.SetInteger("Animator", 1); return; }
 
