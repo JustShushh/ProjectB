@@ -23,9 +23,11 @@ public class PlayerController : MonoBehaviour
 
     public float Stamina = 100f;
     public float maxStamina = 100f;
+    public float jumpSpeed = 10f;
     public Vector3 Offset;
 
     bool isRunning;
+    bool isLanding;
     private float curSpeedX;
     private float curSpeedY;
 
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         PlayerAnimation();
-
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -102,11 +103,23 @@ public class PlayerController : MonoBehaviour
         // Player and Camera rotation
         if (canMove)
         {
+
+            if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
+            {
+                
+                moveDirection.y += jumpSpeed;
+                animator.SetInteger("Animator", 8);
+            }
+
             //gravity for falling
-            if (!characterController.isGrounded)
+            else if (!characterController.isGrounded)
             {
                 moveDirection.y -= gravity * Time.deltaTime;
+                animator.SetInteger("Animator", 9);
+
             }
+
+            
 
             rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
             rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
