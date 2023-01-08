@@ -11,6 +11,7 @@ public class Patrol : MonoBehaviour
     [SerializeField] private float hitLength;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Animator animator;
+    PlayerController playerController;
 
     internal bool attacking;
     internal bool dead;
@@ -20,6 +21,7 @@ public class Patrol : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+        playerController= player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class Patrol : MonoBehaviour
                     {
                         agent.destination = player.transform.position;
 
-                        if (hit.distance < hitLength) { animator.SetBool("AttackPlayer", true); attacking = true; } else { attacking = false; }
+                        if (hit.distance < hitLength && !playerController.safe) { animator.SetBool("AttackPlayer", true); playerController.TakeHit(); }
 
                     }
                 }
