@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public float time = 2;
 
 
+
     internal CharacterController characterController;
 
     float rotationX = 0;
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+   
         //animator = GetComponent<Animator>();
 
         // Lock cursor
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         //animator.SetInteger("Animator", 7);
          health = health - damage;
-        float t = 1;
+       
 
         while (time > 0)
         {

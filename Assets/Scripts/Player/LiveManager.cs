@@ -5,7 +5,7 @@ using TMPro;
 
 public class LiveManager : MonoBehaviour
 {
-    public TextMeshProUGUI _textMeshPro;
+  
     public PlayerController _playerController;
     private string Protected;
     public bool died;
@@ -20,7 +20,7 @@ public class LiveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TextOnScreen();
+    
 
         if (_playerController.health == 0)  died = true; 
 
@@ -29,10 +29,7 @@ public class LiveManager : MonoBehaviour
             Protected = "Protected";
         }else { Protected = "Not Protected";}
     }
-    void TextOnScreen()
-    {
-        _textMeshPro.text = " Health :" + _playerController.health + " Movement: " + _playerController.characterController.velocity + Protected;
-    }
+   
     void die()
     {
         Debug.Log("je bent dood");
