@@ -110,8 +110,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space) && characterController.isGrounded)
             {
-                
-                moveDirection.y += jumpSpeed;
+
+                Jump();
                 animator.SetInteger("Animator", 8);
             }
 
@@ -144,6 +144,10 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+    }
+    public void Jump()
+    {
+        moveDirection.y = jumpSpeed;
     }
     public void TakeHit()
     {
