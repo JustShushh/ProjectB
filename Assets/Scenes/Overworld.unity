@@ -180,36 +180,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8b373a748c2e614394384d94f6e57dc, type: 3}
---- !u!1 &270638478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4531412491242395739, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
-  m_PrefabInstance: {fileID: 1284045205}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &270638481 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4532533271437729700, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
-  m_PrefabInstance: {fileID: 1284045205}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270638478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7405678de606af0419e8d761c98c122c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &270638486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270638478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc29473eec360844bd62ec4fdfac515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textMeshPro: {fileID: 733207258}
-  _playerController: {fileID: 270638481}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,13 +578,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 270638486, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
+      propertyPath: _textMeshPro
+      value: 
+      objectReference: {fileID: 733207258}
     - target: {fileID: 4531412491242395739, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4532533271437729700, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
-      propertyPath: jumpSpeed
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4533191394663622877, guid: 9e04224451a5ce24b87d7aa35cb03471, type: 3}
       propertyPath: m_RootOrder

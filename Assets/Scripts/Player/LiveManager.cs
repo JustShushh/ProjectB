@@ -8,10 +8,12 @@ public class LiveManager : MonoBehaviour
     public TextMeshProUGUI _textMeshPro;
     public PlayerController _playerController;
     private string Protected;
+    public bool died;
 
     // Start is called before the first frame update
     void Start()
     {
+        died = false;
         _playerController = GetComponent<PlayerController>();
     }
 
@@ -20,7 +22,8 @@ public class LiveManager : MonoBehaviour
     {
         TextOnScreen();
 
-        if (_playerController.health == 0) die();
+        if (_playerController.health == 0)  died = true; 
+
         if (_playerController.safe)
         {
             Protected = "Protected";

@@ -28,12 +28,14 @@ public class PlayerController : MonoBehaviour
 
     bool isRunning;
     bool isLanding;
-    internal bool safe = false;
+    public bool safe;
+    
     private float curSpeedX;
     private float curSpeedY;
 
     public float health = 100f;
     public float damage = 25f;
+    public float time = 2;
 
 
     internal CharacterController characterController;
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 144;
-        playerCamera.transform.LookAt(transform.position + Offset);
+       // playerCamera.transform.LookAt(transform.position + Offset);
     }
 
     void Update()
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
     }
     void Movement()
     {
-        InputHandling();
+       // InputHandling();
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -112,14 +114,14 @@ public class PlayerController : MonoBehaviour
             {
 
                 Jump();
-                animator.SetInteger("Animator", 8);
+               // animator.SetInteger("Animator", 8);
             }
 
             //gravity for falling
            if (!characterController.isGrounded)
             {
                 moveDirection.y -= gravity * Time.deltaTime;
-                animator.SetInteger("Animator", 9);
+               // animator.SetInteger("Animator", 9);
 
             }
 
@@ -129,7 +131,7 @@ public class PlayerController : MonoBehaviour
             rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
             
-                playerCamera.transform.localRotation = Quaternion.Euler(rotation.x, 0, 0);
+            playerCamera.transform.localRotation = Quaternion.Euler(rotation.x, 0, 0);
             
             transform.eulerAngles = new Vector2(0, rotation.y);
         }
@@ -151,33 +153,17 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeHit()
     {
-        animator.SetInteger("Animator", 7);
-        health = health - damage;
+        //animator.SetInteger("Animator", 7);
+         health = health - damage;
         float t = 1;
-        while(t > 0)
+
+        while (time > 0)
         {
-            t -= 0.05f;
+            time -= 0.1f;
             safe = true;
         }
         safe = false;
     }
-    internal void InputHandling()
-    {
-        if (Input.GetKey(KeyCode.X)) { animator.SetInteger("Animator", 3); return; }
-
-        if (isRunning && Input.GetKey(KeyCode.W)) { animator.SetInteger("Animator", 1); return; }
-
-        if (Input.GetKey(KeyCode.D)) { animator.SetInteger("Animator", 5); return; }
-
-        if (Input.GetKey(KeyCode.A)) { animator.SetInteger("Animator", 6); return; }
-
-        if (Input.GetKey(KeyCode.W)) { animator.SetInteger("Animator", 2); return; }
-
-        if (Input.GetKey(KeyCode.S)) { animator.SetInteger("Animator", 4); return; }
-
-
-        else { animator.SetInteger("Animator", 0); }
-
-    }
+ 
 
 }

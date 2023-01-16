@@ -4,12 +4,11 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class JumpTest
+public class SafetyTest
 {
-   
     // A Test behaves as an ordinary method
     [Test]
-    public void JumpTestSimplePasses()
+    public void SafetyTestSimplePasses()
     {
         // Use the Assert class to test conditions
     }
@@ -17,18 +16,13 @@ public class JumpTest
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.
     [UnityTest]
-    public IEnumerator JumpTesting()
+    public IEnumerator SafetyTestWithEnumeratorPasses()
     {
-        Object.Instantiate(Resources.Load<GameObject>("Prefabs/Plane"));
         var player = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Player")).GetComponent<PlayerController>();
 
-        yield return new WaitForSeconds(1f);
-        
-        var initialPosition = player.transform.position;
+        player.TakeHit();
 
-        player.Jump();
-
-        yield return new WaitForSeconds(player.jumpSpeed);
-        Assert.AreEqual(initialPosition,player.transform.position);
+        yield return new WaitForSeconds(3f);
+        Assert.False(player.safe);
     }
 }
