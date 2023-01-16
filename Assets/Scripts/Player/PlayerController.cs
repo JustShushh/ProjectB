@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     bool isLanding;
     public bool safe;
     
-    private float curSpeedX;
-    private float curSpeedY;
+    [HideInInspector] public float curSpeedX;
+    [HideInInspector] public float curSpeedY;
 
     public float health = 100f;
     public float damage = 25f;
@@ -95,8 +95,8 @@ public class PlayerController : MonoBehaviour
         }
 
         //speed of the player
-        curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        VerticalMovement();
+        HorizontalMovement();
         float movementDirectionY = moveDirection.y;
 
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -152,6 +152,14 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         moveDirection.y = jumpSpeed;
+    }
+    public void VerticalMovement()
+    {
+        curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
+    }
+    public void HorizontalMovement()
+    {
+        curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
     }
     public void TakeHit()
     {
